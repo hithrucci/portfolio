@@ -1,0 +1,365 @@
+/* ----------------------------------- */
+/* fonts */
+/* ----------------------------------- */
+@font-face {
+  font-family: "Paperozi";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2")
+    format("woff2");
+  font-weight: 100;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paperozi";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-2ExtraLight.woff2")
+    format("woff2");
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paperozi";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-3Light.woff2")
+    format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paperozi";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paperozi";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2")
+    format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paperozi";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2")
+    format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paperozi";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paperozi";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2")
+    format("woff2");
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paperozi";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2")
+    format("woff2");
+  font-weight: 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PartialSans";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/PartialSansKR-Regular.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-display: swap;
+}
+
+/* ----------------------------------- */
+/* 공통사항 */
+/* ----------------------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+ul {
+  list-style: none;
+}
+body {
+  background-color: #000;
+  width: 100%;
+  height: 200vh;
+}
+
+/* ----------------------------------- */
+/* header */
+/* ----------------------------------- */
+header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 80px;
+  background-color: #000;
+  color: #fff;
+  z-index: 9999;
+  border-bottom: 1px solid #ccc;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+}
+header.hide {
+  transform: translateY(-100%);
+}
+
+header .inner {
+  width: 1500px;
+  margin: 0px auto;
+  height: 100%;
+  background-color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header h1 {
+  height: 100%;
+  padding: 4px 0px;
+  box-sizing: border-box;
+}
+header h1 a {
+  height: 100%;
+  display: block;
+}
+header h1 img {
+  height: 100%;
+}
+header .gnb {
+  display: flex;
+}
+.gnb li {
+  width: 100px;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+}
+.gnb li:last-child {
+  position: relative;
+  border-radius: 50%;
+  transition: background-color 0.5s;
+}
+.gnb li:last-child::before {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-20deg);
+  position: absolute;
+  content: "";
+  border: 1px solid #ff1b60;
+  width: 100%;
+  height: 50px;
+  border-radius: 50%;
+  transition: 0.5s;
+}
+.gnb li:last-child::after {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(20deg);
+  position: absolute;
+  content: "";
+  border: 1px solid #ff1b60;
+  width: 100%;
+  height: 50px;
+  border-radius: 50%;
+  transition: 0.5s;
+  pointer-events: none;
+}
+.gnb li:last-child.on::before {
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.gnb li:last-child.on::after {
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+.gnb li:last-child:hover {
+  background-color: #ff1b60;
+}
+
+/* ----------------------------------- */
+/* main */
+/* ----------------------------------- */
+main {
+  padding-top: 80px;
+  width: 100%;
+  height: auto;
+}
+.inner h2 {
+  font-family: "Paperozi";
+  font-weight: 800;
+  font-size: 52px;
+  height: 120px;
+  line-height: 120px;
+}
+
+/* ----------------------------------- */
+/* works */
+/* ----------------------------------- */
+
+#works {
+  width: 100%;
+}
+
+#works .inner {
+  position: relative;
+  width: 1500px;
+  margin: 0px auto;
+  height: 100vh;
+}
+#works .inner::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  /*가로*/
+  background-image: linear-gradient(#888888 1px, transparent 1px),
+    /*세로*/ linear-gradient(90deg, #888 1px, transparent 1px);
+  background-size: 40px 40px;
+  /* 사각형 Feather */
+  -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      #ccc 15%,
+      #ccc 85%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to right,
+      transparent 0%,
+      #ccc 15%,
+      #ccc 85%,
+      transparent 100%
+    );
+  -webkit-mask-composite: intersect;
+  mask-composite: intersect;
+  z-index: -1;
+}
+#works .inner h2 {
+  position: sticky;
+  top: 80px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+@keyframes blinking {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+#works .inner h2 div {
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+  background-color: #ff9f00;
+  animation: blinking 5s linear infinite;
+}
+#works .inner h2 span {
+  display: block;
+}
+
+#works .inner .text {
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#works .inner .text h3 {
+  font-size: 5rem;
+  color: #000;
+
+  text-align: center;
+  width: 50%;
+  margin: 0px auto;
+  font-family: "PartialSans";
+  letter-spacing: 1;
+}
+.cls-1 {
+  fill: #09fff7;
+  stroke-width: 0px;
+}
+
+svg {
+  width: 750px;
+  position: absolute;
+  left: 52%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+#works .inner .flowText {
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 50px;
+  border-radius: 25px;
+  line-height: 50px;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid #fff;
+  backdrop-filter: blur(2px);
+  overflow: hidden;
+  font-family: "PartialSans";
+}
+#works .inner .flowText .wrap {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  width: 100%;
+  height: 100%;
+  line-height: 50px;
+  animation: flow 30s linear infinite;
+}
+@keyframes flow {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: -2520px;
+  }
+}
+#works .inner .flowText .wrap li {
+  display: block;
+  flex-shrink: 0;
+  height: 30px;
+  line-height: 30px;
+  width: 600px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#works .inner .flowText .wrap li:nth-child(odd) {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+#works .inner .flowText .wrap img {
+  width: 100%;
+}
