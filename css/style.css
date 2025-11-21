@@ -2,6 +2,22 @@
 /* fonts */
 /* ----------------------------------- */
 @font-face {
+  font-family: "ChangwonDanggamAsak";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/CWDangamAsac-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-display: swap;
+}
+@import url("https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css");
+
+@font-face {
+  font-family: "Galmuri11";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2506-1@1.0/Galmuri11-Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
   font-family: "Paperozi";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2")
     format("woff2");
@@ -96,7 +112,7 @@ ul {
   list-style: none;
 }
 body {
-  background-color: #000;
+  background-color: #181818;
   width: 100%;
   height: 200vh;
 }
@@ -110,12 +126,13 @@ header {
   left: 0px;
   width: 100%;
   height: 80px;
-  background-color: #000;
+  background-color: #181818;
   color: #fff;
   z-index: 9999;
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
   box-sizing: border-box;
   transition: transform 0.3s ease;
+  box-shadow: 0px 3px 20px rgba(255, 153, 0, 0.5);
 }
 header.hide {
   transform: translateY(-100%);
@@ -125,7 +142,7 @@ header .inner {
   width: 1500px;
   margin: 0px auto;
   height: 100%;
-  background-color: #000;
+  background-color: #181818;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -201,12 +218,37 @@ main {
   width: 100%;
   height: auto;
 }
-.inner h2 {
+.inner .sectionTitle {
   font-family: "Paperozi";
   font-weight: 800;
   font-size: 52px;
   height: 120px;
   line-height: 120px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inner .sectionTitle div {
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+  background-color: #ff9f00;
+  animation: blinking 3s linear infinite;
+}
+/* ----------------------------------- */
+/* about */
+/* ----------------------------------- */
+#about {
+  height: 100vh;
+  width: 100%;
+}
+#about .inner {
+  width: 1500px;
+  position: relative;
+  margin: 0px auto;
+  height: 100%;
 }
 
 /* ----------------------------------- */
@@ -221,9 +263,17 @@ main {
   position: relative;
   width: 1500px;
   margin: 0px auto;
-  height: 100vh;
 }
-#works .inner::before {
+
+/* ----------------------------------- */
+/* projectOverview */
+/* ----------------------------------- */
+#works .inner .projectOverview {
+  height: 100vh;
+  position: relative;
+}
+
+#works .inner .projectOverview::before {
   content: "";
   width: 100%;
   height: 100%;
@@ -231,7 +281,7 @@ main {
   left: 0px;
   top: 0px;
   /*가로*/
-  background-image: linear-gradient(#888888 1px, transparent 1px),
+  background-image: linear-gradient(#888 1px, transparent 1px),
     /*세로*/ linear-gradient(90deg, #888 1px, transparent 1px);
   background-size: 40px 40px;
   /* 사각형 Feather */
@@ -253,14 +303,7 @@ main {
   mask-composite: intersect;
   z-index: -1;
 }
-#works .inner h2 {
-  position: sticky;
-  top: 80px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+
 @keyframes blinking {
   0% {
     opacity: 0.2;
@@ -272,38 +315,34 @@ main {
     opacity: 0.2;
   }
 }
-#works .inner h2 div {
-  height: 16px;
-  width: 16px;
-  border-radius: 8px;
-  background-color: #ff9f00;
-  animation: blinking 5s linear infinite;
-}
-#works .inner h2 span {
-  display: block;
-}
 
-#works .inner .text {
-  position: sticky;
-  top: 50%;
-  transform: translateY(-50%);
+#works .inner .projectOverview {
+  position: relative;
+  height: 100vh;
 }
-#works .inner .text h3 {
-  font-size: 5rem;
-  color: #000;
-
+#works .inner .projectOverview .text {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+}
+#works .inner .projectOverview .text h3 {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  font-size: 4.5rem;
+  color: #181818;
   text-align: center;
-  width: 50%;
+  width: 100%;
   margin: 0px auto;
   font-family: "PartialSans";
   letter-spacing: 1;
 }
-.cls-1 {
-  fill: #09fff7;
-  stroke-width: 0px;
+#works .inner .projectOverview .text h3.on {
+  -webkit-text-stroke: 0.1px #ff1b60;
 }
-
-svg {
+#work .inner .projectOverview .text svg {
   width: 750px;
   position: absolute;
   left: 52%;
@@ -313,10 +352,10 @@ svg {
 }
 #works .inner .flowText {
   position: absolute;
-  bottom: 30%;
+  bottom: 50%;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
+  width: 60%;
   height: 50px;
   border-radius: 25px;
   line-height: 50px;
@@ -362,4 +401,162 @@ svg {
 }
 #works .inner .flowText .wrap img {
   width: 100%;
+}
+#works .text svg {
+  width: 100%;
+  max-width: 700px; /* 필요하면 조절 */
+  height: 800px;
+  display: block;
+  overflow: visible;
+}
+#works .text svg path {
+  width: 70%;
+}
+#works .text .guideLine {
+  fill: none; /* 도화지처럼 비워두고 */
+  stroke: #eb5248; /* 선색 */
+  stroke-width: 14; /* 선 굵기 */
+  stroke-linecap: round; /* 끝 둥글게 */
+  stroke-linejoin: round; /* 꺾이는 곳 부드럽게 */
+}
+
+/*projects*/
+#works .projectOverview .projects {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+#works .projectOverview .lists {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+#works .projectOverview .lists li {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 16px;
+  justify-content: space-between;
+  background-color: #000;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#works .projectOverview .lists li img {
+  width: 100%;
+}
+.projects li h4 {
+  font-weight: normal;
+  text-align: center;
+}
+
+#works .projectOverview .lists li:nth-child(1) {
+  font-family: "Galmuri7";
+  width: 250px;
+  height: 250px;
+  color: #00ff00;
+}
+#works .projectOverview .lists li:nth-child(2) {
+  font-family: "ChangwonDanggamAsak";
+  width: 280px;
+  height: 200px;
+  color: #fff;
+}
+
+#works .projectOverview .lists li:nth-child(3) {
+  font-family: "ChangwonDanggamAsak";
+  width: 280px;
+  height: 200px;
+  color: #fff;
+}
+#works .projectOverview .lists li:nth-child(4) {
+  font-family: "ChangwonDanggamAsak";
+  width: 200px;
+  height: 350px;
+  color: #ff67a1;
+}
+#works .projectOverview .link-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#works .projectOverview .link-line {
+  fill: none;
+  stroke: #9c9c9c;
+  stroke-width: 2;
+  z-index: -1;
+}
+
+/* ----------------------------------- */
+/* projectDetail */
+/* ----------------------------------- */
+.projectDetail {
+  margin-top: 80px;
+  width: 100%;
+  perspective: 500px;
+}
+.projectDetail > h3 {
+  color: #fff;
+  font-size: 3rem;
+}
+.projectDetail > div {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  padding: 20px 0px;
+  transform: rotateX(10deg);
+}
+
+.projectDetail > div .projectImg {
+  width: 50%;
+}
+.projectDetail > div .projectImg img {
+  width: 100%;
+  display: block;
+}
+.projectDetail > div .projectImg .shortCut {
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50px;
+  border: 1px solid #fff;
+  margin: 0px auto;
+  color: #fff;
+  text-align: center;
+  margin-top: 20px;
+}
+.projectDetail > div .projectImg .shortCut a {
+  display: block;
+}
+
+.projectDetail > div .projectContent {
+  position: relative;
+  width: 50%;
+}
+.projectDetail > div .projectContent h4 {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  font-size: 40px;
+  display: inline-block;
+  color: #ccc;
+}
+.projectDetail > div .projectContent p {
+  position: absolute;
+  left: 10%;
+  width: 400px;
+  font-size: 1rem;
+  color: #ccc;
+  top: 33%;
 }
