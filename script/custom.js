@@ -23,6 +23,7 @@ contact.addEventListener("mouseleave", () => {
 
 const works = document.querySelector("#works");
 const worksText = works.querySelector(".text h3");
+const worksTitle = works.querySelector("h3");
 const guide = works.querySelector(".guideLine");
 const length = guide.getTotalLength();
 const projects = works.querySelector(".projects");
@@ -77,6 +78,7 @@ tl.fromTo(
   { y: 300, width: "90%" },
   { width: "80%", y: -515, x: 150 }
 )
+
   .fromTo(
     guide,
     { opacity: 0 },
@@ -86,21 +88,14 @@ tl.fromTo(
     },
     0.2
   )
-  .to(
-    worksText,
-    {
-      "-webkit-text-stroke": "1px #F99E1B",
-      duration: 2,
-    },
-    0.4
-  )
+
   .fromTo(
     numList,
     { opacity: 0 },
     {
       opacity: 1,
       x: -400,
-      y: -300,
+      y: -350,
       rotation: -30,
     },
     0.6
@@ -111,7 +106,7 @@ tl.fromTo(
     {
       opacity: 1,
       x: 400,
-      y: -280,
+      y: -300,
       rotation: 35,
     },
     0.8
@@ -121,7 +116,7 @@ tl.fromTo(
     { opacity: 0 },
     {
       opacity: 1,
-      x: 360,
+      x: 420,
       y: 150,
       rotation: 26,
     },
@@ -132,7 +127,7 @@ tl.fromTo(
     { opacity: 0 },
     {
       opacity: 1,
-      x: -380,
+      x: -440,
       y: 150,
       rotation: 26,
     },

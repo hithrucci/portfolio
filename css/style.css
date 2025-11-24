@@ -583,7 +583,8 @@ main {
   display: flex;
   width: 100%;
   padding: 20px 0px;
-  transform: rotateX(10deg);
+  justify-content: center;
+  gap: 50px;
 }
 
 .projectDetail > div .projectImg {
@@ -603,20 +604,16 @@ main {
   width: 50%;
 }
 .projectDetail > div .projectContent h4 {
-  position: absolute;
-  top: 20%;
-  left: 10%;
   font-size: 40px;
   display: inline-block;
   color: #ccc;
+  margin-top: 50px;
 }
 .projectDetail > div .projectContent p {
-  position: absolute;
-  left: 10%;
   width: 400px;
   font-size: 1rem;
   color: #ccc;
-  top: 33%;
+  margin-top: 40px;
 }
 .projectDetail > div .projectContent .shortCut {
   width: 150px;
