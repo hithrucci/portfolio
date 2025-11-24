@@ -281,8 +281,8 @@ main {
   left: 0px;
   top: 0px;
   /*가로*/
-  background-image: linear-gradient(#888 1px, transparent 1px),
-    /*세로*/ linear-gradient(90deg, #888 1px, transparent 1px);
+  background-image: linear-gradient(#353535 1px, transparent 1px),
+    /*세로*/ linear-gradient(90deg, #353535 1px, transparent 1px);
   background-size: 40px 40px;
   /* 사각형 Feather */
   -webkit-mask-image: linear-gradient(
@@ -420,12 +420,13 @@ main {
   stroke-linejoin: round; /* 꺾이는 곳 부드럽게 */
 }
 
-/*projects*/
+/* projects */
 #works .projectOverview .projects {
   position: relative;
   width: 100%;
   height: 100%;
 }
+
 #works .projectOverview .lists {
   position: absolute;
   top: 50%;
@@ -433,21 +434,88 @@ main {
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
+  z-index: 2;
 }
+
 #works .projectOverview .lists li {
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  padding: 16px;
-  justify-content: space-between;
-  background-color: #000;
-  border: 1px solid #fff;
-  border-radius: 20px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+#works .projectOverview .lists li .itemInner {
+  position: relative;
+  box-sizing: border-box;
+  padding: 16px;
+  background-color: #000;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#works .projectOverview .lists li .itemInner img {
+  width: 100%;
+  display: block;
+}
+
+.projects li h4 {
+  font-weight: normal;
+  text-align: center;
+}
+
+/* 각 카드 스타일은 itemInner에 적용 */
+#works .projectOverview .lists li:nth-child(1) .itemInner {
+  font-family: "Galmuri7";
+  width: 250px;
+  height: 250px;
+  color: #00ff00;
+}
+
+#works .projectOverview .lists li:nth-child(2) .itemInner {
+  font-family: "ChangwonDanggamAsak";
+  width: 280px;
+  height: 200px;
+  color: #fff;
+}
+
+#works .projectOverview .lists li:nth-child(3) .itemInner {
+  font-family: "ChangwonDanggamAsak";
+  width: 280px;
+  height: 200px;
+  color: #fff;
+}
+
+#works .projectOverview .lists li:nth-child(4) .itemInner {
+  font-family: "ChangwonDanggamAsak";
+  width: 200px;
+  height: 350px;
+  color: #ff67a1;
+}
+
+/* SVG는 li 밑으로 */
+#works .projectOverview .link-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#works .projectOverview .link-line {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 0.1;
+}
+
 #works .projectOverview .lists li img {
   width: 100%;
 }
@@ -491,8 +559,8 @@ main {
 
 #works .projectOverview .link-line {
   fill: none;
-  stroke: #9c9c9c;
-  stroke-width: 2;
+  stroke: #ffffff;
+  stroke-width: 0.5;
   z-index: -1;
 }
 
@@ -525,17 +593,7 @@ main {
   width: 100%;
   display: block;
 }
-.projectDetail > div .projectImg .shortCut {
-  width: 150px;
-  height: 50px;
-  line-height: 50px;
-  border-radius: 50px;
-  border: 1px solid #fff;
-  margin: 0px auto;
-  color: #fff;
-  text-align: center;
-  margin-top: 20px;
-}
+
 .projectDetail > div .projectImg .shortCut a {
   display: block;
 }
@@ -559,4 +617,15 @@ main {
   font-size: 1rem;
   color: #ccc;
   top: 33%;
+}
+.projectDetail > div .projectContent .shortCut {
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50px;
+  border: 1px solid #fff;
+  margin: 0px auto;
+  color: #fff;
+  text-align: center;
+  margin-top: 20px;
 }
