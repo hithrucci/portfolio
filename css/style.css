@@ -2,6 +2,13 @@
 /* fonts */
 /* ----------------------------------- */
 @font-face {
+  font-family: "YeogiOttaeJalnan";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff")
+    format("woff");
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face {
   font-family: "ChangwonDanggamAsak";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/CWDangamAsac-Bold.woff")
     format("woff");
@@ -228,6 +235,8 @@ main {
   display: flex;
   align-items: center;
   gap: 8px;
+  z-index: 44;
+  /* background-color: red; */
 }
 
 .inner .sectionTitle div {
@@ -323,7 +332,7 @@ main {
 #works .inner .projectOverview .text {
   position: absolute;
   left: 50%;
-  top: 40%;
+  top: 30%;
   transform: translate(-50%, -50%);
 }
 #works .inner .projectOverview .text h3 {
@@ -365,6 +374,7 @@ main {
   backdrop-filter: blur(2px);
   overflow: hidden;
   font-family: "PartialSans";
+  z-index: 3;
 }
 #works .inner .flowText .wrap {
   box-sizing: border-box;
@@ -494,6 +504,13 @@ main {
 }
 
 #works .projectOverview .lists li:nth-child(4) .itemInner {
+  font-family: "YeogiOttaeJalnan";
+  width: 280px;
+  height: 250px;
+  color: #f47445;
+}
+
+#works .projectOverview .lists li:nth-child(5) .itemInner {
   font-family: "ChangwonDanggamAsak";
   width: 200px;
   height: 350px;
@@ -545,10 +562,17 @@ main {
 }
 #works .projectOverview .lists li:nth-child(4) {
   font-family: "ChangwonDanggamAsak";
+  width: 280px;
+  height: 250px;
+  color: #ff67a1;
+}
+#works .projectOverview .lists li:nth-child(5) {
+  font-family: "ChangwonDanggamAsak";
   width: 200px;
   height: 350px;
   color: #ff67a1;
 }
+
 #works .projectOverview .link-svg {
   position: absolute;
   inset: 0;
@@ -570,21 +594,35 @@ main {
 .projectDetail {
   margin-top: 80px;
   width: 100%;
+}
+.projectDetail .personalProjects {
   perspective: 500px;
 }
-.projectDetail > h3 {
+.projectDetail .personalProjects > h3 {
   color: #fff;
   font-size: 3rem;
+  margin-bottom: 50px;
 }
-.projectDetail > div {
+.projectDetail .projectWrap {
+  width: 100%;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  display: flex;
+  gap: 80px;
+}
+.projectDetail > h3 span {
+  color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 50px;
+}
+.projectDetail .projectWrap > div {
   box-sizing: border-box;
   display: flex;
   width: 100%;
   padding: 20px 0px;
   justify-content: center;
   gap: 50px;
+  flex-shrink: 0;
 }
 
 .projectDetail > div .projectImg {
@@ -607,13 +645,30 @@ main {
   font-size: 40px;
   display: inline-block;
   color: #ccc;
-  margin-top: 50px;
+  margin-top: 30px;
+  text-align: center;
 }
 .projectDetail > div .projectContent p {
   width: 400px;
   font-size: 1rem;
   color: #ccc;
+  margin-top: 10px;
+}
+.projectDetail > div .projectContent .skills h4 {
+  color: #ccc;
   margin-top: 40px;
+  font-size: 1.6rem;
+}
+.projectDetail > div .projectContent .skills ul {
+  display: flex;
+}
+.projectDetail > div .projectContent .skills li {
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+}
+.projectDetail > div .projectContent .skills li img {
+  width: 100%;
 }
 .projectDetail > div .projectContent .shortCut {
   width: 150px;

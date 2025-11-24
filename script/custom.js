@@ -30,7 +30,8 @@ const projects = works.querySelector(".projects");
 const numList = projects.querySelector("li:nth-child(1)");
 const weatherList = projects.querySelector("li:nth-child(2)");
 const dreamList = projects.querySelector("li:nth-child(3)");
-const todoList = projects.querySelector("li:nth-child(4)");
+const referryList = projects.querySelector("li:nth-child(4)");
+const todoList = projects.querySelector("li:nth-child(5)");
 
 const floatItems = gsap.utils.toArray(
   "#works .projectOverview .lists li .itemInner"
@@ -66,18 +67,14 @@ const tl = gsap.timeline({
   scrollTrigger: {
     trigger: works,
     start: "top top",
-    end: "+=3000px top",
+    end: "+=3000px",
     scrub: 1,
     pin: true,
     onUpdate: updateLinkLine,
   },
 });
 
-tl.fromTo(
-  ".flowText",
-  { y: 300, width: "90%" },
-  { width: "80%", y: -515, x: 150 }
-)
+tl.fromTo(".flowText", { y: 300, width: "90%" }, { y: 0 })
 
   .fromTo(
     guide,
@@ -94,8 +91,8 @@ tl.fromTo(
     { opacity: 0 },
     {
       opacity: 1,
-      x: -400,
-      y: -350,
+      x: -600,
+      y: -320,
       rotation: -30,
     },
     0.6
@@ -105,8 +102,8 @@ tl.fromTo(
     { opacity: 0 },
     {
       opacity: 1,
-      x: 400,
-      y: -300,
+      x: 550,
+      y: -350,
       rotation: 35,
     },
     0.8
@@ -116,9 +113,20 @@ tl.fromTo(
     { opacity: 0 },
     {
       opacity: 1,
-      x: 420,
-      y: 150,
+      x: 490,
+      y: 180,
       rotation: 26,
+    },
+    1
+  )
+  .fromTo(
+    referryList,
+    { opacity: 0 },
+    {
+      opacity: 1,
+      x: 0,
+      y: 250,
+      rotation: -5,
     },
     1
   )
@@ -127,8 +135,8 @@ tl.fromTo(
     { opacity: 0 },
     {
       opacity: 1,
-      x: -440,
-      y: 150,
+      x: -550,
+      y: 180,
       rotation: 26,
     },
     1.2
@@ -155,24 +163,37 @@ function startFloating() {
 const projectDetail = document.querySelector(".projectDetail");
 const numberGame = projectDetail.querySelector(".numberGame");
 
-gsap.fromTo(
-  numberGame,
+let tl2 = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".personalProjects",
+    start: "3000px 60%",
+    end: "3000px 60%",
+    scrub: 1,
+    // markers: true,
+  },
+});
+tl2.fromTo(
+  ".projectWrap",
   {
     opacity: 0,
-    transform: "rotateX(10deg)",
+    rotateX: 10,
     y: 100,
   },
   {
     opacity: 1,
-    transform: "rotateX(0deg)",
+    rotateX: 0,
     y: 0,
-    duration: 1,
-    scrollTrigger: {
-      trigger: numberGame,
-      start: "3000px 60%",
-      end: "3000px 60%",
-      markers: true,
-      scrub: 3,
-    },
+    duration: 2,
   }
 );
+gsap.to(".projectWrap", {
+  x: -1500,
+  scrollTrigger: {
+    trigger: ".projectCntent",
+    pin: true,
+    scrub: 3,
+    start: "5200px center",
+    end: "5200px 70%",
+    markers: true,
+  },
+});
