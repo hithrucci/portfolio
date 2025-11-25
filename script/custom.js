@@ -1,3 +1,6 @@
+// ---------------------------------------------
+// header hide on scroll (그대로 사용)
+// ---------------------------------------------
 const header = document.querySelector("header");
 let lastScrollY = window.scrollY;
 const threshold = 5;
@@ -13,6 +16,9 @@ window.addEventListener("scroll", () => {
   lastScrollY = currentScroll;
 });
 
+// ---------------------------------------------
+// gnb contact hover (그대로 사용)
+// ---------------------------------------------
 let contact = document.querySelector(".gnb li:last-child");
 contact.addEventListener("mouseenter", () => {
   contact.classList.add("on");
@@ -21,12 +27,14 @@ contact.addEventListener("mouseleave", () => {
   contact.classList.remove("on");
 });
 
+// ---------------------------------------------
+// works 영역 세팅
+// ---------------------------------------------
 const works = document.querySelector("#works");
-const worksText = works.querySelector(".text h3");
-const worksTitle = works.querySelector("h3");
 const guide = works.querySelector(".guideLine");
 const length = guide.getTotalLength();
 const projects = works.querySelector(".projects");
+
 const numList = projects.querySelector("li:nth-child(1)");
 const weatherList = projects.querySelector("li:nth-child(2)");
 const dreamList = projects.querySelector("li:nth-child(3)");
@@ -40,11 +48,14 @@ const linkSvg = document.querySelector("#works .projectOverview .link-svg");
 const linkLine = linkSvg.querySelector(".link-line");
 
 gsap.registerPlugin(ScrollTrigger);
+
+// path 초기 세팅
 gsap.set(guide, {
   strokeDasharray: length,
   strokeDashoffset: length,
 });
 
+// 카드 연결 선 업데이트
 function updateLinkLine() {
   if (!projects || !floatItems.length) return;
   const baseRect = projects.getBoundingClientRect();
@@ -57,35 +68,57 @@ function updateLinkLine() {
   });
 
   if (pointsArr.length > 0) {
-    pointsArr.push(pointsArr[0]);
+    pointsArr.push(pointsArr[0]); // 마지막과 첫 번째 연결
   }
 
   linkLine.setAttribute("points", pointsArr.join(" "));
 }
 
-const tl = gsap.timeline({
+updateLinkLine();
+window.addEventListener("resize", updateLinkLine);
+gsap.ticker.add(updateLinkLine);
+
+// 카드들 둥둥이 애니
+function startFloating() {
+  floatItems.forEach((inner) => {
+    gsap.to(inner, {
+      x: "+=" + gsap.utils.random(-60, 60),
+      y: "+=" + gsap.utils.random(-40, 40),
+      duration: gsap.utils.random(3, 5),
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+  });
+}
+
+// ---------------------------------------------
+// 1) projectOverview 전용 타임라인 (pin + scrub)
+//    → WORKS 타이틀은 sticky로 따로 고정
+// ---------------------------------------------
+const overviewTl = gsap.timeline({
   scrollTrigger: {
-    trigger: works,
-    start: "top top",
-    end: "+=3000px",
+    trigger: ".projectOverview",
+    start: "35% center",
+    end: "+=2500", // 오버뷰 애니 구간 길이
     scrub: 1,
     pin: true,
     onUpdate: updateLinkLine,
+    // markers: true,
   },
 });
 
-tl.fromTo(".flowText", { y: 300, width: "90%" }, { y: 0 })
-
+overviewTl
+  .fromTo(".flowText", { y: 300, width: "90%" }, { y: 0 })
   .fromTo(
     guide,
     { opacity: 0 },
     {
-      strokeDashoffset: "0",
+      strokeDashoffset: 0,
       opacity: 1,
     },
     0.2
   )
-
   .fromTo(
     numList,
     { opacity: 0 },
@@ -143,57 +176,60 @@ tl.fromTo(".flowText", { y: 300, width: "90%" }, { y: 0 })
   )
   .add(startFloating, 0);
 
-updateLinkLine();
-window.addEventListener("resize", updateLinkLine);
-gsap.ticker.add(updateLinkLine);
+// ---------------------------------------------
+// 2) projectDetail 등장 애니 (스크럽 X, 그냥 재생)
+// ---------------------------------------------
+const detailEnter = gsap.from(".projectDetail .projectWrap", {
+  opacity: 0,
+  rotateX: 10,
+  y: 100,
+  duration: 0.8,
+  ease: "power2.out",
+  paused: true, // 나중에 ScrollTrigger에서 play
+});
 
-function startFloating() {
-  floatItems.forEach((inner) => {
-    gsap.to(inner, {
-      x: "+=" + gsap.utils.random(-60, 60),
-      y: "+=" + gsap.utils.random(-40, 40),
-      duration: gsap.utils.random(3, 5),
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-    });
-  });
-}
+ScrollTrigger.create({
+  markers: true,
+  trigger: ".projectDetail",
+  start: "50% 50%", // projectDetail 윗부분이 화면 75% 위치에 올 때
+  // end 안 줘도 됨. 그냥 들어올 때 한 번만 재생
+  onEnter: () => detailEnter.play(),
+  onLeaveBack: () => detailEnter.reverse(), // 위로 스크롤하면 다시 숨기고 싶으면 유지
+  // markers: true,
+});
 
-const projectDetail = document.querySelector(".projectDetail");
-const numberGame = projectDetail.querySelector(".numberGame");
-
-let tl2 = gsap.timeline({
+// ---------------------------------------------
+// 3) projectDetail 수평 캐러셀
+//    - 이 애니만 end 길게, 다른 애니에 영향 X
+// ---------------------------------------------
+gsap.to(".projectDetail .projectWrap", {
+  x: -6000, // 카드 4개면 -1500 * 4 = -6000
+  ease: "none",
   scrollTrigger: {
-    trigger: ".personalProjects",
-    start: "3000px 60%",
-    end: "3000px 60%",
+    trigger: ".projectDetail",
+    start: "-120px top",
+    end: "+=3000", // 이 값 키우면 더 천천히 이동
     scrub: 1,
+    pin: true, // 디테일 섹션 고정한 상태에서 가로 스크롤
     // markers: true,
   },
 });
-tl2.fromTo(
-  ".projectWrap",
+gsap.fromTo(
+  ".sectionTitle .subTitle",
   {
     opacity: 0,
-    rotateX: 10,
-    y: 100,
+    x: -200,
   },
   {
     opacity: 1,
-    rotateX: 0,
-    y: 0,
-    duration: 2,
+    x: 0,
+    duration: 1,
+    scrollTrigger: {
+      trigger: ".projectDetail",
+      start: "-120px top",
+      end: "-120px top",
+      markers: true,
+      scrub: 1,
+    },
   }
 );
-gsap.to(".projectWrap", {
-  x: -1500,
-  scrollTrigger: {
-    trigger: ".projectCntent",
-    pin: true,
-    scrub: 3,
-    start: "5200px center",
-    end: "5200px 70%",
-    markers: true,
-  },
-});
