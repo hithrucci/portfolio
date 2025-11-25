@@ -189,9 +189,9 @@ const detailEnter = gsap.from(".projectDetail .projectWrap", {
 });
 
 ScrollTrigger.create({
-  markers: true,
+  // markers: true,
   trigger: ".projectDetail",
-  start: "50% 50%", // projectDetail 윗부분이 화면 75% 위치에 올 때
+  start: "50% 85%", // projectDetail 윗부분이 화면 75% 위치에 올 때
   // end 안 줘도 됨. 그냥 들어올 때 한 번만 재생
   onEnter: () => detailEnter.play(),
   onLeaveBack: () => detailEnter.reverse(), // 위로 스크롤하면 다시 숨기고 싶으면 유지
@@ -202,18 +202,23 @@ ScrollTrigger.create({
 // 3) projectDetail 수평 캐러셀
 //    - 이 애니만 end 길게, 다른 애니에 영향 X
 // ---------------------------------------------
-gsap.to(".projectDetail .projectWrap", {
-  x: -6000, // 카드 4개면 -1500 * 4 = -6000
-  ease: "none",
-  scrollTrigger: {
-    trigger: ".projectDetail",
-    start: "-120px top",
-    end: "+=3000", // 이 값 키우면 더 천천히 이동
-    scrub: 1,
-    pin: true, // 디테일 섹션 고정한 상태에서 가로 스크롤
-    // markers: true,
-  },
-});
+gsap.fromTo(
+  ".projectDetail .projectWrap",
+  { x: 0 },
+  {
+    x: -4835, // 카드 4개면 -1500 * 4 = -6000
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".projectDetail",
+      start: "-100px top",
+      end: "+=4500", // 이 값 키우면 더 천천히 이동
+      scrub: 1,
+      pin: true,
+      markers: true,
+    },
+  }
+);
+
 gsap.fromTo(
   ".sectionTitle .subTitle",
   {
@@ -228,8 +233,23 @@ gsap.fromTo(
       trigger: ".projectDetail",
       start: "-120px top",
       end: "-120px top",
-      markers: true,
+      // markers: true,
       scrub: 1,
+    },
+  }
+);
+gsap.fromTo(
+  ".personalProjects>h3",
+  { opacity: 0, transform: "rotateX(10deg)" },
+  {
+    opacity: 1,
+    transform: "rotateX(0deg)",
+    scrollTrigger: {
+      start: "20% center",
+      end: "80% center",
+      trigger: ".personalProjects",
+      // markers: true,
+      scrub: 3,
     },
   }
 );
